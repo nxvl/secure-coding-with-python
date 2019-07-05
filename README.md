@@ -1,5 +1,17 @@
 # Secure Coding with Python.
 
+## Chapter 1: Project Bootstrap
+### Requirement
+To start with our development, we install Flask, create our requirements.txt with it and create the `marketplace` package, with a minimal Flask app in `__init__.py`. We can run the project with `python -m flask run` to see that it loads correctly.
+
+### Vulnerability
+Since we have done some Flask work in the past, we copied over a requirements.txt and installed Flask from it. The version in said file was Flask 0.12. At the date of the development, the latest Flask release is 1.0.3
+
+Since Flask 0.12 the following security releases had been issued:
+* [0.12.3](https://github.com/pallets/flask/releases/tag/0.12.3): CWE-20: Improper Input Validation on JSON decoding.
+
+Given that we used an old version that's vulnerable to all of the above, our application, by definition is vulnerable if we make use of the affected functionallity.
+
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
 
@@ -7,8 +19,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/1-vulnerable-components/code)** 
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/1-vulnerable-components/test)**
 
 ## Index
 ### 1. Vulnerable Components
