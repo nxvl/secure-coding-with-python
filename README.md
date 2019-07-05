@@ -51,6 +51,9 @@ In order to make sure our libraries don't containg any know vulnerabilities, we 
 
 We can start building our CI build script with a simple dependency vulnerabilities check using [Safety](https://pyup.io/safety/) as shown in build.sh
 
+### Fix
+In this case the fix is extremely simple, we just need up upgrade Flask to 1.0.3 in the requirements.txt file.
+
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
 
@@ -58,7 +61,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/1-vulnerable-components/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/code)**
 
 ## Index
 ### 1. Vulnerable Components
