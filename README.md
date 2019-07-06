@@ -74,7 +74,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/fix)**
 
 ## Index
 ### 1. Vulnerable Components
