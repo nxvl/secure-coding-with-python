@@ -1,58 +1,21 @@
 # Secure Coding with Python.
 
-## Chapter 1: Project Bootstrap
+## Chapter 2: SQL Injection
 ### Requirement
-To start with our development, we install Flask, create our requirements.txt with it and create the `marketplace` package, with a minimal Flask app in `__init__.py`. We can run the project with `python -m flask run` to see that it loads correctly.
+Since we are creating a marketplace application, we first decide to allow the upload of Listings, just text. We will worry about users later, since we want to focus on getting the DB and Models setup without needed to worry about authentication and session management at this point.
+
+### Development
+Since the application will need some more configuration we change the `marketplace/__init__.py` to make use of the `create_app` factory function. We add the DB connection functions into `marketplace/db.py` and add the factory function. We also add the DB schema in `schema.sql` and add a flask command to init the DB, which we run with the `python -m flask init-db` command.
 
 ### Vulnerability
-Since we have done some Flask work in the past, we copied over a requirements.txt and installed Flask from it. The version in said file was Flask 0.12. At the date of the development, the latest Flask release is 1.0.3
+Since we are generating the SQL to insert the new listing in a very unsecure way, we can insert SQL commands that will be run in the DB. For example if we insert `'` as title or description we will get `psycopg2.errors.SyntaxError: INSERT has more target columns than expressions LINE 1: INSERT INTO listings (title, description) VALUES (''', ''') ^` instead of a success.
 
-Since Flask 0.12 the following security releases had been issued:
-* [0.12.3](https://github.com/pallets/flask/releases/tag/0.12.3): CWE-20: Improper Input Validation on JSON decoding.
-
-Given that we used an old version that's vulnerable to all of the above, our application, by definition is vulnerable if we make use of the affected functionallity.
-
-### Testing
-In order to make sure our libraries don't containg any know vulnerabilities, we can use a dependency scanner such as [Safety](https://pyup.io/safety/).
-
+We can for example get the postgresql version or any other SQL function result, to check that out, insert `injection', (select version()))-- -` as the title. When we do so, the SQL that's going to be executed will be the following:
+```sql
+INSERT INTO listings (title, description) VALUES ('injection', (select version()))-- -', 'ignored description')
 ```
-(venv) > $ pip install safety
-(venv) > $ safety check -r requirements.txt --full-report
-╒══════════════════════════════════════════════════════════════════════════════╕
-│                                                                              │
-│                               /$$$$$$            /$$                         │
-│                              /$$__  $$          | $$                         │
-│           /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$           │
-│          /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$           │
-│         |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$           │
-│          \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$           │
-│          /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$           │
-│         |_______/  \_______/|__/     \_______/   \___/   \____  $$           │
-│                                                          /$$  | $$           │
-│                                                         |  $$$$$$/           │
-│  by pyup.io                                              \______/            │
-│                                                                              │
-╞══════════════════════════════════════════════════════════════════════════════╡
-│ REPORT                                                                       │
-│ checked 1 packages, using default DB                                         │
-╞════════════════════════════╤═══════════╤══════════════════════════╤══════════╡
-│ package                    │ installed │ affected                 │ ID       │
-╞════════════════════════════╧═══════════╧══════════════════════════╧══════════╡
-│ flask                      │ 0.12      │ <0.12.3                  │ 36388    │
-╞══════════════════════════════════════════════════════════════════════════════╡
-│ flask version Before 0.12.3 contains a CWE-20: Improper Input Validation     │
-│ vulnerability in flask that can result in Large amount of memory usage       │
-│ possibly leading to denial of service. This attack appear to be exploitable  │
-│ via Attacker provides JSON data in incorrect encoding. This vulnerability    │
-│ appears to have been fixed in 0.12.3.                                        │
-╘══════════════════════════════════════════════════════════════════════════════╛
-```
-**Note:** The free version of safety updates it's database once a month, so latest vulnerabilities might not show up. For better security a paid API key can be used to get more up-to-date releases information.
-
-We can start building our CI build script with a simple dependency vulnerabilities check using [Safety](https://pyup.io/safety/) as shown in build.sh
-
-### Fix
-In this case the fix is extremely simple, we just need up upgrade Flask to 1.0.3 in the requirements.txt file.
+As it can be seen, the inserted title will be `injection` and the description will be the result of the `select version()` command, or any other command we wish to insert there, including dropping the DB.
+postgresql 
 
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
@@ -61,7 +24,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/code)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/test)**
 
 ## Index
 ### 1. Vulnerable Components

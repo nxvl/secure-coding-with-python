@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Listings{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for listing in listings %}
+    <article class="listing">
+      <header>
+        <div>
+          <h1>{{ listing[1] }}</h1>
+        </div>
+      </header>
+      <p class="body">{{ listing[2] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
