@@ -24,7 +24,9 @@ def register():
         db = get_db()
         cur = db.cursor()
 
-        sql = "INSERT INTO listings (title, description) VALUES ('%s', '%s')" % (title, description) 
+        sql = "INSERT INTO listings (title, description) VALUES (E'%s', E'%s')" % (
+            title.replace("'", "\\'"), description.replace("'", "\\'")
+        )
         print(sql, file=sys.stdout)
         cur.execute(sql)
         db.commit()

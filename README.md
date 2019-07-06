@@ -66,6 +66,30 @@ You seems to have an SQLi in /listings/create for param description
 =========================== 1 failed in 0.32 seconds ===========================
 
 ```
+### Fix
+Given that we have seen that the way this injection works is by breaking out of the `'`'s, we can use PostgreSQL escaping `E'\''`. For that we change our SQL query and replace every occurrence of `'` with `\'`:
+```python
+        sql = "INSERT INTO listings (title, description) VALUES (E'%s', E'%s')" % (
+            title.replace("'", "\\'"), description.replace("'", "\\'")
+        )
+```
+
+With that our test now pass:
+```text
+(venv) > $ pytest --tb=short
+================================================================================================== test session starts ===================================================================================================
+platform linux -- Python 3.5.3, pytest-5.0.0, py-1.8.0, pluggy-0.12.0
+rootdir: {...}
+collected 1 item
+tests/test_listings.py .                                                                                                                                                                                           [100%]
+================================================================================================ 1 passed in 0.95 seconds ================================================================================================
+```
+
+But this is not sufficient, if we modify our payload to be `injection\', (select version()))-- -` our query will end up being:
+```sql
+INSERT INTO listings (title, description) VALUES (E'injection\\', (select version()))-- -', E'\'')
+```
+and attacker will still be able to exploit our app.
 
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
@@ -74,7 +98,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test2)**
 
 ## Index
 ### 1. Vulnerable Components
