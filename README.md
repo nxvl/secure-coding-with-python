@@ -15,7 +15,6 @@ We can for example get the postgresql version or any other SQL function result, 
 INSERT INTO listings (title, description) VALUES ('injection', (select version()))-- -', 'ignored description')
 ```
 As it can be seen, the inserted title will be `injection` and the description will be the result of the `select version()` command, or any other command we wish to insert there, including dropping the DB.
-postgresql 
 
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
