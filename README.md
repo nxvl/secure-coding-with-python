@@ -91,6 +91,42 @@ INSERT INTO listings (title, description) VALUES (E'injection\\', (select versio
 ```
 and attacker will still be able to exploit our app.
 
+### Testing part 2
+We could keep adding more cases to our fuzzer, or use external tools, like [sqlmap](http://sqlmap.org/), which are going to be limited by the test cases we can pass to them, we could also use a Static Application Security Testing, like [bandit](https://github.com/PyCQA/bandit/).
+
+```text
+(venv) > $ bandit marketplace/**/*.py
+Test results:
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   Location: marketplace/listings.py:27
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html
+26	
+27	        sql = "INSERT INTO listings (title, description) VALUES (E'%s', E'%s')" % (
+28	            title.replace("'", "\\'"), description.replace("'", "\\'")
+29	        )
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 28
+	Total lines skipped (#nosec): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0.0
+		Low: 0.0
+		Medium: 1.0
+		High: 0.0
+	Total issues (by confidence):
+		Undefined: 0.0
+		Low: 1.0
+		Medium: 0.0
+		High: 0.0
+Files skipped (0):
+```
+As we can see, the tool doesn't like our sanitization strategies and flags our code as a possible source of SQL injection.
+
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
 

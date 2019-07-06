@@ -4,7 +4,7 @@ from psycopg2.errors import SyntaxError
 
 def sqli_fuzzer(client, url, params):
     fail = False
-    injections = ["'"]
+    injections = ["'", "\\'"]
     for injection in injections:
         for param in params:
             data = {k: 'foo' for k in params}
