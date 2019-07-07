@@ -24,11 +24,8 @@ def register():
         db = get_db()
         cur = db.cursor()
 
-        sql = "INSERT INTO listings (title, description) VALUES (E'%s', E'%s')" % (
-            title.replace("'", "\\'"), description.replace("'", "\\'")
-        )
-        print(sql, file=sys.stdout)
-        cur.execute(sql)
+        sql = "INSERT INTO listings (title, description) VALUES (%s, %s)"
+        cur.execute(sql, (title, description))
         db.commit()
         return redirect(url_for('listings.index'))
 

@@ -127,6 +127,15 @@ Files skipped (0):
 ```
 As we can see, the tool doesn't like our sanitization strategies and flags our code as a possible source of SQL injection.
 
+### Fix part 2
+In order to fix the SQL injetion once and for all, we should rely on prepared statements, and let the DB engine do the param sanitization, like this:
+```python
+        sql = "INSERT INTO listings (title, description) VALUES (%s, %s)"
+        cur.execute(sql, (title, description))
+```
+
+Now both our unit test and bandit are happy!
+
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
 
