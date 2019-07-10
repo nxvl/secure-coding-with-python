@@ -9,10 +9,10 @@
     <article class="listing">
       <header>
         <div>
-          <h1>{{ listing[1] }}</h1>
+          <h1>{{ listing.title }}</h1>
         </div>
       </header>
-      <p class="body">{{ listing[2] }}</p>
+      <p class="body">{{ listing.description }}</p>
     </article>
     {% if not loop.last %}
       <hr>

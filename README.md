@@ -136,6 +136,11 @@ In order to fix the SQL injetion once and for all, we should rely on prepared st
 
 Now both our unit test and bandit are happy!
 
+### Fix part 3
+An even better approach is to use an ORM, in this case we set up SQLAlchemy, by using the standard methods the ORM will do the sanitization so we don't need to worry about it. 
+
+**Note**: Most ORMs in some special use cases can still allow SQL Injections to happen, if you are using non-standard methods, review the ORMs security guidelines and test your application.
+
 ## Description
 Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
 
@@ -143,7 +148,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.3-sql-injection/fix3)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/code)**
 
 ## Index
 ### 1. Vulnerable Components
