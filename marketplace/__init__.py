@@ -25,7 +25,8 @@ def create_app(test_config=None):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from . import listings
+    from . import listings, users
     app.register_blueprint(listings.bp)
+    app.register_blueprint(users.bp)
 
     return app
