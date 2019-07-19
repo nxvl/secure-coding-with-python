@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Successful user creation{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    Successfully created user for {{ user.full_name }} with email {{ user.email }}
+{% endblock %}
