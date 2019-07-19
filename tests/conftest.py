@@ -3,7 +3,7 @@ import sys
 
 import pytest
 from marketplace import create_app
-from marketplace.db import get_db, init_db
+from marketplace import db
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'helpers'))
 
@@ -13,9 +13,6 @@ def app():
         'TESTING': True,
         'DATABASE': 'marketplace_test',
     })
-
-    with app.app_context():
-        init_db()
 
     yield app
 
