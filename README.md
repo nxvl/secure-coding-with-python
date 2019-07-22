@@ -13,7 +13,7 @@ Since we are not thoughtful on what we are doing, we are storing the passwords i
 ### Fix
 In order to keep password secure and secret we need to encrypt them before saving. Since we know MD5 has been long broken, we are going to use SHA256.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/test)**
 
 ## Index
 ### 1. Vulnerable Components
