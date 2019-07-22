@@ -1,3 +1,4 @@
+from hashlib import sha256
 from flask import Blueprint, request, render_template
 
 from . import db
@@ -11,7 +12,7 @@ def sign_up():
         user = User(
             full_name=request.form['full_name'],
             email=request.form['email'],
-            password=request.form['password'],
+            password=sha256(request.form['password'].encode('ascii')).hexdigest(),
         )
         db.session.add(user)
         db.session.commit()

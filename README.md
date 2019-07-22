@@ -10,6 +10,9 @@ We create a signup page, a user model and start taking in new users.
 ### Vulnerability
 Since we are not thoughtful on what we are doing, we are storing the passwords in plain text. Meaning anyone with access to our DB, or exploiting an SQL injection, as shown in previous chapter, can easily get any user password.
 
+### Fix
+In order to keep password secure and secret we need to encrypt them before saving. Since we know MD5 has been long broken, we are going to use SHA256.
+
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/fix)**
 
 ## Index
