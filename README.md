@@ -1,15 +1,6 @@
 # Secure Coding with Python.
 
 ## Chapter 3: Weak Password Storage
-### Requirement
-Now that we know our DB is working, it's time to start creating some users. We should have a signup account that create the user.
-
-### Development
-We create a signup page, a user model and start taking in new users.
-
-### Vulnerability
-Since we are not thoughtful on what we are doing, we are storing the passwords in plain text. Meaning anyone with access to our DB, or exploiting an SQL injection, as shown in previous chapter, can easily get any user password.
-
 ### Fix
 In order to keep password secure and secret we need to encrypt them before saving. Since we know MD5 has been long broken, we are going to use SHA256.
 
