@@ -1,21 +1,6 @@
 # Secure Coding with Python.
 
 ## Chapter 2: SQL Injection
-### Requirement
-Since we are creating a marketplace application, we first decide to allow the upload of Listings, just text. We will worry about users later, since we want to focus on getting the DB and Models setup without needed to worry about authentication and session management at this point.
-
-### Development
-Since the application will need some more configuration we change the `marketplace/__init__.py` to make use of the `create_app` factory function. We add the DB connection functions into `marketplace/db.py` and add the factory function. We also add the DB schema in `schema.sql` and add a flask command to init the DB, which we run with the `python -m flask init-db` command.
-
-### Vulnerability
-Since we are generating the SQL to insert the new listing in a very unsecure way, we can insert SQL commands that will be run in the DB. For example if we insert `'` as title or description we will get `psycopg2.errors.SyntaxError: INSERT has more target columns than expressions LINE 1: INSERT INTO listings (title, description) VALUES (''', ''') ^` instead of a success.
-
-We can for example get the postgresql version or any other SQL function result, to check that out, insert `injection', (select version()))-- -` as the title. When we do so, the SQL that's going to be executed will be the following:
-```sql
-INSERT INTO listings (title, description) VALUES ('injection', (select version()))-- -', 'ignored description')
-```
-As it can be seen, the inserted title will be `injection` and the description will be the result of the `select version()` command, or any other command we wish to insert there, including dropping the DB.
-
 ### Testing
 Testing for SQL injections is a tedious job, it's mostly done by hand or using special scanners, like web scanners or SAST/DAST tools. For this chapter we will be writing a very simple fuzzer function and create unit tests that use them in order to test for injections.
 
