@@ -1,6 +1,5 @@
 # Secure Coding with Python.
 
-<<<<<<< HEAD
 ## Chapter 3: Weak Password Storage
 ### Requirement
 Now that we know our DB is working, it's time to start creating some users. We should have a signup account that create the user.
@@ -12,22 +11,6 @@ We create a signup page, a user model and start taking in new users.
 Since we are not thoughtful on what we are doing, we are storing the passwords in plain text. Meaning anyone with access to our DB, or exploiting an SQL injection, as shown in previous chapter, can easily get any user password.
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/fix)**
-=======
-## Chapter 2: SQL Injection
-### Fix part 3
-An even better approach is to use an ORM, in this case we set up SQLAlchemy, by using the standard methods the ORM will do the sanitization so we don't need to worry about it. 
-
-**Note**: Most ORMs in some special use cases can still allow SQL Injections to happen, if you are using non-standard methods, review the ORMs security guidelines and test your application.
-
-## Description
-Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
-
-The branches will have the following naming scheme for easier navigation: {Chapter number}-{Chapter Name}/{code|test|fix}. I encourage you to follow the chapters in order, but you can also skip to the specific one you wish to review. 
-
-For this course we will be using Python3, Flask and PostgreSQL.
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/code)**
->>>>>>> 3ff4b7e25b966ef82e6bc6fbfbaae12608f4cb68
 
 ## Index
 ### 1. Vulnerable Components
