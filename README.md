@@ -1,9 +1,21 @@
 # Secure Coding with Python.
 
 ## Chapter 2: SQL Injection
+<<<<<<< HEAD
 ### Testing part 2
 We could keep adding more cases to our fuzzer, or use external tools, like [sqlmap](http://sqlmap.org/), which are going to be limited by the test cases we can pass to them, we could also use a Static Application Security Testing, like [bandit](https://github.com/PyCQA/bandit/).
 
+=======
+### Fix
+Given that we have seen that the way this injection works is by breaking out of the `'`'s, we can use PostgreSQL escaping `E'\''`. For that we change our SQL query and replace every occurrence of `'` with `\'`:
+```python
+        sql = "INSERT INTO listings (title, description) VALUES (E'%s', E'%s')" % (
+            title.replace("'", "\\'"), description.replace("'", "\\'")
+        )
+```
+
+With that our test now pass:
+>>>>>>> 92ad6fd2f124e1ba42cdec5246bd229775808ed0
 ```text
 (venv) > $ bandit marketplace/**/*.py
 Test results:
@@ -44,7 +56,11 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
+<<<<<<< HEAD
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/fix)**
+=======
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test)**
+>>>>>>> 92ad6fd2f124e1ba42cdec5246bd229775808ed0
 
 ## Index
 ### 1. Vulnerable Components
@@ -56,9 +72,9 @@ For this course we will be using Python3, Flask and PostgreSQL.
 * [2.1-sql-injection/code](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/code) 
 * [2.1-sql-injection/test](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/test)
 * [2.1-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/fix)
-* [2.2-sql-injection/test](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test2)
-* [2.2-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/fix2)
-* [2.3-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.3-sql-injection/fix3)
+* [2.2-sql-injection/test](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test)
+* [2.2-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/fix)
+* [2.3-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.3-sql-injection/fix)
 
 ### 3. Weak password storage
 * [3.1-weak-password-storage/code](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/code) 
@@ -68,14 +84,11 @@ For this course we will be using Python3, Flask and PostgreSQL.
 
 ### 4. Weak account secrets
 * [4-weak-account-secrets/code](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code) 
-* [4-weak-account-secrets/test](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/test)
 * [4-weak-account-secrets/fix](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/fix)
 
 ### 5. Broken Authentication
 * [5.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/code) 
-* [5.1-broken-authentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/test)
 * [5.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/fix)
-* [5.2-broken-authentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-authentication/test)
 * [5.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-authentication/fix)
 
 ### 6. Broken Deauthentication
