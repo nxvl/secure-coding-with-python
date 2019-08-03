@@ -1,17 +1,6 @@
 # Secure Coding with Python.
 
 ## Chapter 1: Project Bootstrap
-### Requirement
-To start with our development, we install Flask, create our requirements.txt with it and create the `marketplace` package, with a minimal Flask app in `__init__.py`. We can run the project with `python -m flask run` to see that it loads correctly.
-
-### Vulnerability
-Since we have done some Flask work in the past, we copied over a requirements.txt and installed Flask from it. The version in said file was Flask 0.12. At the date of the development, the latest Flask release is 1.0.3
-
-Since Flask 0.12 the following security releases had been issued:
-* [0.12.3](https://github.com/pallets/flask/releases/tag/0.12.3): CWE-20: Improper Input Validation on JSON decoding.
-
-Given that we used an old version that's vulnerable to all of the above, our application, by definition is vulnerable if we make use of the affected functionallity.
-
 ### Testing
 In order to make sure our libraries don't containg any know vulnerabilities, we can use a dependency scanner such as [Safety](https://pyup.io/safety/).
 
