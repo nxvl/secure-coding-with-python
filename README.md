@@ -35,9 +35,9 @@ For this course we will be using Python3, Flask and PostgreSQL.
 * [2.1-sql-injection/code](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/code) 
 * [2.1-sql-injection/test](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/test)
 * [2.1-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/fix)
-* [2.2-sql-injection/test](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test2)
-* [2.2-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/fix2)
-* [2.3-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.3-sql-injection/fix3)
+* [2.2-sql-injection/test](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test)
+* [2.2-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/fix)
+* [2.3-sql-injection/fix](https://github.com/nxvl/secure-coding-with-python/tree/2.3-sql-injection/fix)
 
 ### 3. Weak password storage
 * [3.1-weak-password-storage/code](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/code) 
@@ -47,14 +47,11 @@ For this course we will be using Python3, Flask and PostgreSQL.
 
 ### 4. Weak account secrets
 * [4-weak-account-secrets/code](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code) 
-* [4-weak-account-secrets/test](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/test)
 * [4-weak-account-secrets/fix](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/fix)
 
 ### 5. Broken Authentication
 * [5.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/code) 
-* [5.1-broken-authentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/test)
 * [5.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/fix)
-* [5.2-broken-authentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-authentication/test)
 * [5.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-authentication/fix)
 
 ### 6. Broken Deauthentication
