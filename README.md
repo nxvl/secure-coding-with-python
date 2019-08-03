@@ -1,21 +1,9 @@
 # Secure Coding with Python.
 
 ## Chapter 2: SQL Injection
-<<<<<<< HEAD
 ### Testing part 2
 We could keep adding more cases to our fuzzer, or use external tools, like [sqlmap](http://sqlmap.org/), which are going to be limited by the test cases we can pass to them, we could also use a Static Application Security Testing, like [bandit](https://github.com/PyCQA/bandit/).
 
-=======
-### Fix
-Given that we have seen that the way this injection works is by breaking out of the `'`'s, we can use PostgreSQL escaping `E'\''`. For that we change our SQL query and replace every occurrence of `'` with `\'`:
-```python
-        sql = "INSERT INTO listings (title, description) VALUES (E'%s', E'%s')" % (
-            title.replace("'", "\\'"), description.replace("'", "\\'")
-        )
-```
-
-With that our test now pass:
->>>>>>> 92ad6fd2f124e1ba42cdec5246bd229775808ed0
 ```text
 (venv) > $ bandit marketplace/**/*.py
 Test results:
@@ -56,11 +44,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-<<<<<<< HEAD
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/fix)**
-=======
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.2-sql-injection/test)**
->>>>>>> 92ad6fd2f124e1ba42cdec5246bd229775808ed0
 
 ## Index
 ### 1. Vulnerable Components
