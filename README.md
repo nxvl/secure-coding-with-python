@@ -1,45 +1,6 @@
 # Secure Coding with Python.
 
 ## Chapter 1: Project Bootstrap
-### Testing
-In order to make sure our libraries don't containg any know vulnerabilities, we can use a dependency scanner such as [Safety](https://pyup.io/safety/).
-
-```
-(venv) > $ pip install safety
-(venv) > $ safety check -r requirements.txt --full-report
-╒══════════════════════════════════════════════════════════════════════════════╕
-│                                                                              │
-│                               /$$$$$$            /$$                         │
-│                              /$$__  $$          | $$                         │
-│           /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$           │
-│          /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$           │
-│         |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$           │
-│          \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$           │
-│          /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$           │
-│         |_______/  \_______/|__/     \_______/   \___/   \____  $$           │
-│                                                          /$$  | $$           │
-│                                                         |  $$$$$$/           │
-│  by pyup.io                                              \______/            │
-│                                                                              │
-╞══════════════════════════════════════════════════════════════════════════════╡
-│ REPORT                                                                       │
-│ checked 1 packages, using default DB                                         │
-╞════════════════════════════╤═══════════╤══════════════════════════╤══════════╡
-│ package                    │ installed │ affected                 │ ID       │
-╞════════════════════════════╧═══════════╧══════════════════════════╧══════════╡
-│ flask                      │ 0.12      │ <0.12.3                  │ 36388    │
-╞══════════════════════════════════════════════════════════════════════════════╡
-│ flask version Before 0.12.3 contains a CWE-20: Improper Input Validation     │
-│ vulnerability in flask that can result in Large amount of memory usage       │
-│ possibly leading to denial of service. This attack appear to be exploitable  │
-│ via Attacker provides JSON data in incorrect encoding. This vulnerability    │
-│ appears to have been fixed in 0.12.3.                                        │
-╘══════════════════════════════════════════════════════════════════════════════╛
-```
-**Note:** The free version of safety updates it's database once a month, so latest vulnerabilities might not show up. For better security a paid API key can be used to get more up-to-date releases information.
-
-We can start building our CI build script with a simple dependency vulnerabilities check using [Safety](https://pyup.io/safety/) as shown in build.sh
-
 ### Fix
 In this case the fix is extremely simple, we just need up upgrade Flask to 1.0.3 in the requirements.txt file.
 
