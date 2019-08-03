@@ -1,15 +1,6 @@
 # Secure Coding with Python.
 
 ## Chapter 2: SQL Injection
-### Fix part 2
-In order to fix the SQL injetion once and for all, we should rely on prepared statements, and let the DB engine do the param sanitization, like this:
-```python
-        sql = "INSERT INTO listings (title, description) VALUES (%s, %s)"
-        cur.execute(sql, (title, description))
-```
-
-Now both our unit test and bandit are happy!
-
 ### Fix part 3
 An even better approach is to use an ORM, in this case we set up SQLAlchemy, by using the standard methods the ORM will do the sanitization so we don't need to worry about it. 
 
@@ -22,11 +13,7 @@ The branches will have the following naming scheme for easier navigation: {Chapt
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
-<<<<<<< HEAD
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.1-weak-password-storage/code)**
-=======
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.3-sql-injection/fix)**
->>>>>>> 63a94db15f2a764a554613dfe42e6423fbe40bb3
 
 ## Index
 ### 1. Vulnerable Components
