@@ -4,6 +4,9 @@
 ### Fix
 In order to keep password secure and secret we need to encrypt them before saving. Since we know MD5 has been long broken, we are going to use SHA256.
 
+### Vulnerability
+Even though we are storing passwords encrypted, our choice of algorithm allows an attacker to perform rainbow table attacks, given access to the password hashes.
+
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/test)**
 
 ## Index
