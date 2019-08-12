@@ -1,4 +1,4 @@
-from hashlib import sha256
+import bcrypt
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -17,7 +17,8 @@ class User(db.Model):
 
     @password.setter
     def password(self, plaintext):
-        self._password = sha256(plaintext.encode('ascii')).hexdigest()
+        salt = bcrypt.gensalt(rounds=12)
+        self._password = bcrypt.hashpw(plaintext, salt)
 
 class Listing(db.Model):
     __tablename__ = 'listings'

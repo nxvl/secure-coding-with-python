@@ -1,50 +1,48 @@
 # Secure Coding with Python.
 
 ## Chapter 3: Weak Password Storage
-### Test
-Every encryption algorithm can be theoretically cracked using brute-force attacks, this attack consist in trying multiple possible strings until one provides de desired hash. Said attacks are fairly expensive to perform as they take some time.
+### Fix
+In order to prevent rainbow table attacks, cryptographers incorporated *[salt](https://en.wikipedia.org/wiki/Salt_(cryptography)* to hashing algorithms.
+One of the algorithms that incorporates *salt* is [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt), said algorithm, has also been created to have a configurable iteration count, making the algorithm slower as computation power increases over time.
 
-Given that we know the algorithm used for a hash we can create a very simple dictionary brute-force attack against the hash. We will be using the [RockYou](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt) wordlist.
+To test this concept, here is a function that hashes a password and times how long it takes to do so. We increase the iteration in 4 every time.
+```python
+In [1]: import bcrypt                                                                                                                                                                                                                                                       
 
-```text
-> $ time python crackpass.py f75778f7425be4db0369d09af37a6c2b9a83dea0e53e7bd57412e4b060e607f7 rockyou.txt
-Password is: supersecret
-python crackpass.py  rockyou.txt  0.32s user 0.01s system 99% cpu 0.325 total
-                                             
+In [2]: import time                                                                                                                                                                                                                                                         
+
+In [3]: def hash(passwd, r): 
+   ...:     start = time.time() 
+   ...:     salt = bcrypt.gensalt(rounds=r) 
+   ...:     hashed = bcrypt.hashpw(passwd, salt) 
+   ...:     end = time.time() 
+   ...:     print(end - start) 
+   ...:     print(salt) 
+   ...:     print(hashed) 
+   ...:                                                                                                                                                                                                                                                                     
+
+In [4]: hash(b'supersecret', 4)                                                                                                                                                                                                                                             
+0.0013570785522460938
+b'$2b$04$wBySsg90EhLyCxFhuNC9Ze'
+b'$2b$04$wBySsg90EhLyCxFhuNC9ZeDZKdauAtlEcegqM0GOyZKIgJhJ6neMW'
+
+In [5]: hash(b'supersecret', 8)                                                                                                                                                                                                                                             
+0.01915597915649414
+b'$2b$08$QNWHnTrxBQu8pscr5hhveu'
+b'$2b$08$QNWHnTrxBQu8pscr5hhveuyNOPwtR4VhxujWE/O.yjc60DhIduWkq'
+
+In [6]: hash(b'supersecret', 12)                                                                                                                                                                                                                                            
+0.2138371467590332
+b'$2b$12$.Eql6xg1/uUoWr3yuYSOaO'
+b'$2b$12$.Eql6xg1/uUoWr3yuYSOaOLkEZ.XoUiJOjuMHtjyWNZoW8JOOSHx.'
+
+In [7]: hash(b'supersecret', 16)                                                                                                                                                                                                                                            
+3.2648401260375977
+b'$2b$16$A4xDXHZPHPE5tUxdqoJD0u'
+b'$2b$16$A4xDXHZPHPE5tUxdqoJD0uXleSIgNGHOOv8yQ6wQIU/rLoVwqtF4C'
 ```
-
-Now that's just 1 password, if we had to crack thousands of passwords, the effort starts getting significant. That's where rainbow tables kick in.
-The [wikipedia definition](https://en.wikipedia.org/wiki/Rainbow_table) describes rainbow tables as: "A rainbow table is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes."
-
-Let's try to mass crack:
-#### 50 hashes
-```text
-> $ time python rainbow-crack.py rockyou-rainbow.txt hashes-50.txt
-[...]
-password for b'73d07a303cc50a5423ae72081cafe4e50a2fb1a0ef161d55e332e8533c5e25a0' is b"b'vane944218'"
-password for b'2c2d908b313fb71b5592ae4a44dfad2dbedd1832915a97a547d58e4c09a8ee49' is b"b'Robert7681'"
-python rainbow-crack.py rockyou-rainbow.txt   10.98s user 1.50s system 99% cpu 12.484 total
-```
-
-#### 100 hashes
-```text
-> $ time python rainbow-crack.py rockyou-rainbow.txt hashes-100.txt
-[...]
-password for b'37325783f2e3763b14f25d3a28edc90fbd08283fffa9b446d827ad60c0d19272' is b"b'raaces'"
-password for b'6df380dbe975a3bb65a880360e84584fdacea1455c27aa7ffef9a4b639592259' is b"b'mattlvu'"
-python crackers/rainbow-crack.py ~/Downloads/rockyou-rainbow.txt   10.83s user 1.52s system 99% cpu 12.367 total
-```
-
-#### 200 hashes
-```text
-> $ time python rainbow-crack.py rockyou-rainbow.txt hashes-200.txt
-[...]
-password for b'53ad0738f0356042ae89f837767078f39492fc9b29e60fe056be5cefa9e9b510' is b"b'shaiyshaiy'"
-password for b'9459c1e60e359f9f646bfe92a3a1ff1167a3b6d816290d09a33cdf8a565b15c6' is b"b'kuizenga'"
-python crackers/rainbow-crack.py ~/Downloads/rockyou-rainbow.txt   10.99s user 1.53s system 99% cpu 12.541 total
-```
-
-As can be seen with Rainbow tables the cracking time is fairly linear, it takes around 11s for almost any case, most of the time is probably spend on loading up the DB, which can be optimized, but for the sake of this example we have done on a non-ideal way.
+ 
+ Now if an attacker gets our hashed passwords, since each password has it's own hash, the brute-force attack will need to be performed per-hash, since the salt chances for each one. And since we can configure the iterations, as time passes by, we can increase it to make a brute-force attack slower each time.
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/fix)**
 
