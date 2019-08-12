@@ -18,7 +18,7 @@ class User(db.Model):
     @password.setter
     def password(self, plaintext):
         salt = bcrypt.gensalt(rounds=12)
-        self._password = bcrypt.hashpw(plaintext, salt)
+        self._password = bcrypt.hashpw(plaintext.encode(), salt).decode()
 
 class Listing(db.Model):
     __tablename__ = 'listings'
