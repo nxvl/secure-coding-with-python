@@ -44,7 +44,7 @@ b'$2b$16$A4xDXHZPHPE5tUxdqoJD0uXleSIgNGHOOv8yQ6wQIU/rLoVwqtF4C'
  
  Now if an attacker gets our hashed passwords, since each password has it's own hash, the brute-force attack will need to be performed per-hash, since the salt chances for each one. And since we can configure the iterations, as time passes by, we can increase it to make a brute-force attack slower each time.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code)**
 
 ## Index
 ### 1. Vulnerable Components
