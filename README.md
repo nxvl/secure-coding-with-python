@@ -43,10 +43,10 @@ b'$2b$16$A4xDXHZPHPE5tUxdqoJD0u'
 b'$2b$16$A4xDXHZPHPE5tUxdqoJD0uXleSIgNGHOOv8yQ6wQIU/rLoVwqtF4C'
 ```
  
-Now if an attacker gets our hashed passwords, since each password has it's own hash, the brute-force attack will need to be performed per-hash, since the salt chances for each one. And since we can configure the iterations, as time passes by, we can increase it to make a brute-force attack slower each time.
+Now if an attacker gets our hashed passwords, since hashed has been computed using the password and a unique *salt*, the brute-force attack will need to be performed per-hash, rendering rainbow tables useless.
+Also since we can configure the iterations, as time passes by, we can increase it's count to make a brute-force attack slower each time.
 
 **Note**: Other algorithms that include the same concepts, and are arguably better, are scrypt and argon2.
-
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code)**
 
