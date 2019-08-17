@@ -3,7 +3,8 @@
 ## Chapter 3: Weak Password Storage
 ### Fix
 In order to prevent rainbow table attacks, cryptographers incorporated *[salt](https://en.wikipedia.org/wiki/Salt_(cryptography)* to hashing algorithms.
-One of the algorithms that incorporates *salt* is [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt), said algorithm, has also been created to have a configurable iteration count, making the algorithm slower as computation power increases over time.
+One of the algorithms that incorporates *salt* is [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt).
+Said algorithm also uses a technique known as *[key stretching](https://en.wikipedia.org/wiki/Key_stretching)*, while salt prevents precomputation attacks, key stretching helps thwart attacks that rely on hardware that can perform hashes very quickly, such as GPUs and ASICs
 
 To test this concept, here is a function that hashes a password and times how long it takes to do so. We increase the iteration in 4 every time.
 ```python
@@ -42,7 +43,10 @@ b'$2b$16$A4xDXHZPHPE5tUxdqoJD0u'
 b'$2b$16$A4xDXHZPHPE5tUxdqoJD0uXleSIgNGHOOv8yQ6wQIU/rLoVwqtF4C'
 ```
  
- Now if an attacker gets our hashed passwords, since each password has it's own hash, the brute-force attack will need to be performed per-hash, since the salt chances for each one. And since we can configure the iterations, as time passes by, we can increase it to make a brute-force attack slower each time.
+Now if an attacker gets our hashed passwords, since each password has it's own hash, the brute-force attack will need to be performed per-hash, since the salt chances for each one. And since we can configure the iterations, as time passes by, we can increase it to make a brute-force attack slower each time.
+
+**Note**: Other algorithms that include the same concepts, and are arguably better, are scrypt and argon2.
+
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code)**
 
