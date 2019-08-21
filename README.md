@@ -2,26 +2,59 @@
 
 ## Chapter 2: SQL Injection
 ### Requirement
-Since we are creating a marketplace application, we first decide to allow the upload of Listings, just text. We will worry about users later, since we want to focus on getting the DB and Models setup without needed to worry about authentication and session management at this point.
+For our marketplace application, we first decide to allow the upload of Listings, just text. We will 
+worry about users later, since we want to focus on getting the DB and Models setup without needed to worry about 
+authentication and session management at this point.
+
+### Setting up the DB
+First we need to install postgresql, you can do that with your preferred package manager, for this tutorial we will be
+using postgres 11.4. After installing you would probably need to init the db:
+```bash
+> initdb /usr/local/var/postgres
+```
+*Note*: on linux you might need to run the command as root or use sudo.
+
+Then we create the `marketplace` database:
+```bash
+> createdb marketplace
+```
+*Note*: on linux you might need to run the command as postgres user by prepending `sudo -u postgres` to the command.
+
+Then we need to install the python driver for python, which comes as the `psycopg2` package.
+```bash
+> pip install psycopg2 
+```
+or
+```bash
+> pip install -r requirements.txt
+```
+*Note*: On OSX if you installed postgres from homebrew, you might need to prepend 
+`LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"` to the command in order to install correctly.
 
 ### Development
-Since the application will need some more configuration we change the `marketplace/__init__.py` to make use of the `create_app` factory function. We add the DB connection functions into `marketplace/db.py` and add the factory function. We also add the DB schema in `schema.sql` and add a flask command to init the DB, which we run with the `python -m flask init-db` command.
+Since the application will need some more configuration we change the `marketplace/__init__.py` to make use of the 
+`create_app` factory function. We add the DB connection functions into `marketplace/db.py` and add the factory function. 
+We also add the DB schema in `schema.sql` and add a flask command to init the DB, which we run with:
+```bash
+> python -m flask init-db
+```
 
 ### Vulnerability
-Since we are generating the SQL to insert the new listing in a very unsecure way, we can insert SQL commands that will be run in the DB. For example if we insert `'` as title or description we will get `psycopg2.errors.SyntaxError: INSERT has more target columns than expressions LINE 1: INSERT INTO listings (title, description) VALUES (''', ''') ^` instead of a success.
+Since we are generating the SQL to insert the new listing in a very unsecure way, we can insert SQL commands that will 
+be run in the DB. For example if we insert `'` as title or description we will get 
+`psycopg2.errors.SyntaxError: INSERT has more target columns than expressions LINE 1: INSERT INTO listings (title, description) VALUES (''', ''') ^` 
+instead of a success.
 
-We can for example get the postgresql version or any other SQL function result, to check that out, insert `injection', (select version()))-- -` as the title. When we do so, the SQL that's going to be executed will be the following:
+We can for example get the postgresql version or any other SQL function result, to check that out, insert 
+`injection', (select version()))-- -` as the title. When we do so, the SQL that's going to be executed will be the 
+following:
+
 ```sql
 INSERT INTO listings (title, description) VALUES ('injection', (select version()))-- -', 'ignored description')
 ```
-As it can be seen, the inserted title will be `injection` and the description will be the result of the `select version()` command, or any other command we wish to insert there, including dropping the DB.
 
-## Description
-Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
-
-The branches will have the following naming scheme for easier navigation: {Chapter number}-{Chapter Name}/{code|test|fix}. I encourage you to follow the chapters in order, but you can also skip to the specific one you wish to review. 
-
-For this course we will be using Python3, Flask and PostgreSQL.
+As it can be seen, the inserted title will be `injection` and the description will be the result of the 
+`select version()` command, or any other command we wish to insert there, including dropping the DB.
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/2.1-sql-injection/test)**
 
@@ -45,47 +78,43 @@ For this course we will be using Python3, Flask and PostgreSQL.
 * [3.2-weak-password-storage/test](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/test)
 * [3.2-weak-password-storage/fix](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/fix)
 
-### 4. Weak account secrets
-* [4-weak-account-secrets/code](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code) 
-* [4-weak-account-secrets/fix](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/fix)
+### 4. Broken Authentication
+* [4.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/code) 
+* [4.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/fix)
+* [4.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4.2-broken-authentication/fix)
 
-### 5. Broken Authentication
-* [5.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/code) 
-* [5.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/fix)
-* [5.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-authentication/fix)
+### 5. Broken Deauthentication
+* [5.1-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/code) 
+* [5.1-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/test)
+* [5.1-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/fix)
+* [5.2-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/code) 
+* [5.2-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/test)
+* [5.2-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/fix)
+* [5.3-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/code) 
+* [5.3-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/test)
+* [5.3-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/fix)
 
-### 6. Broken Deauthentication
-* [6.1-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/6.1-broken-deauthentication/code) 
-* [6.1-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/6.1-broken-deauthentication/test)
-* [6.1-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/6.1-broken-deauthentication/fix)
-* [6.2-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/6.2-broken-deauthentication/code) 
-* [6.2-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/6.2-broken-deauthentication/test)
-* [6.2-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/6.2-broken-deauthentication/fix)
-* [6.3-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/6.3-broken-deauthentication/code) 
-* [6.3-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/6.3-broken-deauthentication/test)
-* [6.3-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/6.3-broken-deauthentication/fix)
+### 6. Cross-Site Request Forgery (csrf)
+* [6-csrf/code](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/code) 
+* [6-csrf/test](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/test)
+* [6-csrf/fix](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/fix)
 
-### 7. Cross-Site Request Forgery (csrf)
-* [7-csrf/code](https://github.com/nxvl/secure-coding-with-python/tree/7-csrf/code) 
-* [7-csrf/test](https://github.com/nxvl/secure-coding-with-python/tree/7-csrf/test)
-* [7-csrf/fix](https://github.com/nxvl/secure-coding-with-python/tree/7-csrf/fix)
+### 7. Cross-Site Scripting (xss)
+* [7-xss/code](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/code) 
+* [7-xss/test](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/test)
+* [7-xss/fix](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/fix)
 
-### 8. Cross-Site Scripting (xss)
-* [8-xss/code](https://github.com/nxvl/secure-coding-with-python/tree/8-xss/code) 
-* [8-xss/test](https://github.com/nxvl/secure-coding-with-python/tree/8-xss/test)
-* [8-xss/fix](https://github.com/nxvl/secure-coding-with-python/tree/8-xss/fix)
+### 8. Broken Access Control
+* [8-broken-access-control/code](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/code) 
+* [8-broken-access-control/test](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)
+* [8-broken-access-control/fix](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/fix)
 
-### 9. Broken Access Control
-* [9-broken-access-control/code](https://github.com/nxvl/secure-coding-with-python/tree/9-broken-access-control/code) 
-* [9-broken-access-control/test](https://github.com/nxvl/secure-coding-with-python/tree/9-broken-access-control/test)
-* [9-broken-access-control/fix](https://github.com/nxvl/secure-coding-with-python/tree/9-broken-access-control/fix)
+### 9. XML External Entities (XXE)
+* [9-xxe/code](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/code) 
+* [9-xxe/test](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/test)
+* [9-xxe/fix](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/fix)
 
-### 10. XML External Entities (XXE)
-* [10-xxe/code](https://github.com/nxvl/secure-coding-with-python/tree/10-xxe/code) 
-* [10-xxe/test](https://github.com/nxvl/secure-coding-with-python/tree/10-xxe/test)
-* [10-xxe/fix](https://github.com/nxvl/secure-coding-with-python/tree/10-xxe/fix)
-
-### 11. Sensitive Data Exposure
-* [11-sensitive-data-exposure/code](https://github.com/nxvl/secure-coding-with-python/tree/11-sensitive-data-exposure/code) 
-* [11-sensitive-data-exposure/test](https://github.com/nxvl/secure-coding-with-python/tree/11-sensitive-data-exposure/test)
-* [11-sensitive-data-exposure/fix](https://github.com/nxvl/secure-coding-with-python/tree/11-sensitive-data-exposure/fix)
+### 10. Sensitive Data Exposure
+* [10-sensitive-data-exposure/code](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/code) 
+* [10-sensitive-data-exposure/test](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/test)
+* [10-sensitive-data-exposure/fix](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/fix)
