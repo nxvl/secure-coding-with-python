@@ -41,47 +41,43 @@ For this course we will be using Python3, Flask and PostgreSQL.
 * [3.2-weak-password-storage/test](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/test)
 * [3.2-weak-password-storage/fix](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/fix)
 
-### 4. Weak account secrets
-* [4-weak-account-secrets/code](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/code) 
-* [4-weak-account-secrets/fix](https://github.com/nxvl/secure-coding-with-python/tree/4-weak-account-secrets/fix)
+### 4. Broken Authentication
+* [4.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/code) 
+* [4.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/fix)
+* [4.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4.2-broken-authentication/fix)
 
-### 5. Broken Authentication
-* [5.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/code) 
-* [5.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-authentication/fix)
-* [5.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-authentication/fix)
+### 5. Broken Deauthentication
+* [5.1-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/code) 
+* [5.1-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/test)
+* [5.1-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/fix)
+* [5.2-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/code) 
+* [5.2-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/test)
+* [5.2-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/fix)
+* [5.3-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/code) 
+* [5.3-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/test)
+* [5.3-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/fix)
 
-### 6. Broken Deauthentication
-* [6.1-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/6.1-broken-deauthentication/code) 
-* [6.1-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/6.1-broken-deauthentication/test)
-* [6.1-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/6.1-broken-deauthentication/fix)
-* [6.2-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/6.2-broken-deauthentication/code) 
-* [6.2-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/6.2-broken-deauthentication/test)
-* [6.2-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/6.2-broken-deauthentication/fix)
-* [6.3-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/6.3-broken-deauthentication/code) 
-* [6.3-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/6.3-broken-deauthentication/test)
-* [6.3-broken-deauthentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/6.3-broken-deauthentication/fix)
+### 6. Cross-Site Request Forgery (csrf)
+* [6-csrf/code](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/code) 
+* [6-csrf/test](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/test)
+* [6-csrf/fix](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/fix)
 
-### 7. Cross-Site Request Forgery (csrf)
-* [7-csrf/code](https://github.com/nxvl/secure-coding-with-python/tree/7-csrf/code) 
-* [7-csrf/test](https://github.com/nxvl/secure-coding-with-python/tree/7-csrf/test)
-* [7-csrf/fix](https://github.com/nxvl/secure-coding-with-python/tree/7-csrf/fix)
+### 7. Cross-Site Scripting (xss)
+* [7-xss/code](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/code) 
+* [7-xss/test](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/test)
+* [7-xss/fix](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/fix)
 
-### 8. Cross-Site Scripting (xss)
-* [8-xss/code](https://github.com/nxvl/secure-coding-with-python/tree/8-xss/code) 
-* [8-xss/test](https://github.com/nxvl/secure-coding-with-python/tree/8-xss/test)
-* [8-xss/fix](https://github.com/nxvl/secure-coding-with-python/tree/8-xss/fix)
+### 8. Broken Access Control
+* [8-broken-access-control/code](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/code) 
+* [8-broken-access-control/test](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)
+* [8-broken-access-control/fix](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/fix)
 
-### 9. Broken Access Control
-* [9-broken-access-control/code](https://github.com/nxvl/secure-coding-with-python/tree/9-broken-access-control/code) 
-* [9-broken-access-control/test](https://github.com/nxvl/secure-coding-with-python/tree/9-broken-access-control/test)
-* [9-broken-access-control/fix](https://github.com/nxvl/secure-coding-with-python/tree/9-broken-access-control/fix)
+### 9. XML External Entities (XXE)
+* [9-xxe/code](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/code) 
+* [9-xxe/test](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/test)
+* [9-xxe/fix](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/fix)
 
-### 10. XML External Entities (XXE)
-* [10-xxe/code](https://github.com/nxvl/secure-coding-with-python/tree/10-xxe/code) 
-* [10-xxe/test](https://github.com/nxvl/secure-coding-with-python/tree/10-xxe/test)
-* [10-xxe/fix](https://github.com/nxvl/secure-coding-with-python/tree/10-xxe/fix)
-
-### 11. Sensitive Data Exposure
-* [11-sensitive-data-exposure/code](https://github.com/nxvl/secure-coding-with-python/tree/11-sensitive-data-exposure/code) 
-* [11-sensitive-data-exposure/test](https://github.com/nxvl/secure-coding-with-python/tree/11-sensitive-data-exposure/test)
-* [11-sensitive-data-exposure/fix](https://github.com/nxvl/secure-coding-with-python/tree/11-sensitive-data-exposure/fix)
+### 10. Sensitive Data Exposure
+* [10-sensitive-data-exposure/code](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/code) 
+* [10-sensitive-data-exposure/test](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/test)
+* [10-sensitive-data-exposure/fix](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/fix)
