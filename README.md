@@ -48,7 +48,7 @@ Also since we can configure the iterations, as time passes by, we can increase i
 
 **Note**: Other algorithms that include the same concepts, and are arguably better, are scrypt and argon2.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/code**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/code)**
 
 ## Index
 ### 1. Vulnerable Components
