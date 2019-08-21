@@ -6,6 +6,15 @@ Testing for SQL injections is a tedious job, it's mostly done by hand or using s
 SAST/DAST tools. For this chapter we will be writing a very simple fuzzer function and create unit tests that use them 
 in order to test for injections.
 
+First we install `pytest`:
+```bash
+> pip install pytest
+```
+or 
+```bash
+> pip install -r requirements.txt
+```
+
 The fuzzer helper looks like this:
 ```python
 import pytest
