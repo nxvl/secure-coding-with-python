@@ -1,2 +1,5 @@
 Flask==1.0.3
+safety==1.8.5
 psycopg2==2.8.3
+pytest==5.1.0
+bandit==1.6.2
