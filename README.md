@@ -1,12 +1,29 @@
 # Secure Coding with Python.
 
 ## Description
-Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step of the development of a sample marketplace application. In such a development, we will be making security mistakes and introducing vulnerabilities, we will add tests for them and finally fixing them.
+Welcome to the Secure coding with python course. In this repository you will find a series of branches for each step
+of the development of a sample marketplace application. In such a development, we will be making security mistakes and 
+introducing vulnerabilities, we will add tests for them and finally fixing them.
 
-The branches will have the following naming scheme for easier navigation: {Chapter number}-{Chapter Name}/{code|test|fix}. I encourage you to follow the chapters in order, but you can also skip to the specific one you wish to review. 
+The branches will have the following naming scheme for easier navigation: 
+{Chapter number}-{Chapter Name}/{code|test|fix}. I encourage you to follow the chapters in order, but you can also 
+skip to the specific one you wish to review. 
 
 For this course we will be using Python3, Flask and PostgreSQL.
 
+## Preparing the environment
+In order to run the code we will set up a virtual environment using [pyenv](https://github.com/pyenv/pyenv) and 
+[pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv). Please refer to each repo for installation instructions.
+
+We create our environment with:
+```bash
+> pyenv virtualenv 3.7.4 sec-coding-marketplace
+```
+
+and we enable it with:
+```bash
+> pyenv shell sec-coding-marketplace
+```
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/1-vulnerable-components/code)** 
 
