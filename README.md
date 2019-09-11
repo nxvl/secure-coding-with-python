@@ -86,9 +86,8 @@ You seems to have an SQLi in /listings/create for param description
 * [3.2-weak-password-storage/fix](https://github.com/nxvl/secure-coding-with-python/tree/3.2-weak-password-storage/fix)
 
 ### 4. Broken Authentication
-* [4.1-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/code) 
-* [4.1-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4.1-broken-authentication/fix)
-* [4.2-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4.2-broken-authentication/fix)
+* [4-broken-authentication/code](https://github.com/nxvl/secure-coding-with-python/tree/4-broken-authentication/code) 
+* [4-broken-authentication/fix](https://github.com/nxvl/secure-coding-with-python/tree/4-broken-authentication/fix)
 
 ### 5. Broken Deauthentication
 * [5.1-broken-deauthentication/code](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/code) 
