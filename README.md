@@ -1,54 +1,18 @@
 # Secure Coding with Python.
 
-## Chapter 3: Weak Password Storage
-### Fix
-In order to prevent rainbow table attacks, cryptographers incorporated *[salt](https://en.wikipedia.org/wiki/Salt_(cryptography)* to hashing algorithms.
-One of the algorithms that incorporates *salt* is [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt).
-Said algorithm also uses a technique known as *[key stretching](https://en.wikipedia.org/wiki/Key_stretching)*, while salt prevents precomputation attacks, key stretching helps thwart attacks that rely on hardware that can perform hashes very quickly, such as GPUs and ASICs
+## Chapter 4: Broken Authentication
+### Requirement
+Now that we have users in the system, we need to allow them to login.
 
-To test this concept, here is a function that hashes a password and times how long it takes to do so. We increase the iteration in 4 every time.
-```python
-In [1]: import bcrypt                                                                                                                                                                                                                                                       
+### Development
+We add a simple form to allow users to login, check for user and password to be correct and add a simple session.
+If something goes wrong, we drop some error messages.
 
-In [2]: import time                                                                                                                                                                                                                                                         
+### Vulnerability
+Since we are very transparent and explicit in our error messages, an attacker can take advantage of them to enumerate users on our system.
+This could be done to reduce time of a brute force or credential stuffing attack.
 
-In [3]: def hash(passwd, r): 
-   ...:     start = time.time() 
-   ...:     salt = bcrypt.gensalt(rounds=r) 
-   ...:     hashed = bcrypt.hashpw(passwd, salt) 
-   ...:     end = time.time() 
-   ...:     print(end - start) 
-   ...:     print(salt) 
-   ...:     print(hashed) 
-   ...:                                                                                                                                                                                                                                                                     
-
-In [4]: hash(b'supersecret', 4)                                                                                                                                                                                                                                             
-0.0013570785522460938
-b'$2b$04$wBySsg90EhLyCxFhuNC9Ze'
-b'$2b$04$wBySsg90EhLyCxFhuNC9ZeDZKdauAtlEcegqM0GOyZKIgJhJ6neMW'
-
-In [5]: hash(b'supersecret', 8)                                                                                                                                                                                                                                             
-0.01915597915649414
-b'$2b$08$QNWHnTrxBQu8pscr5hhveu'
-b'$2b$08$QNWHnTrxBQu8pscr5hhveuyNOPwtR4VhxujWE/O.yjc60DhIduWkq'
-
-In [6]: hash(b'supersecret', 12)                                                                                                                                                                                                                                            
-0.2138371467590332
-b'$2b$12$.Eql6xg1/uUoWr3yuYSOaO'
-b'$2b$12$.Eql6xg1/uUoWr3yuYSOaOLkEZ.XoUiJOjuMHtjyWNZoW8JOOSHx.'
-
-In [7]: hash(b'supersecret', 16)                                                                                                                                                                                                                                            
-3.2648401260375977
-b'$2b$16$A4xDXHZPHPE5tUxdqoJD0u'
-b'$2b$16$A4xDXHZPHPE5tUxdqoJD0uXleSIgNGHOOv8yQ6wQIU/rLoVwqtF4C'
-```
- 
-Now if an attacker gets our hashed passwords, since hashed has been computed using the password and a unique *salt*, the brute-force attack will need to be performed per-hash, rendering rainbow tables useless.
-Also since we can configure the iterations, as time passes by, we can increase it's count to make a brute-force attack slower each time.
-
-**Note**: Other algorithms that include the same concepts, and are arguably better, are scrypt and argon2.
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4-broken-authentication/code)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4-broken-authentication/fix)**
 
 ## Index
 ### 1. Vulnerable Components

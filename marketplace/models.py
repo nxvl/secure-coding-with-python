@@ -8,7 +8,7 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(100))
-    email = db.Column(db.String(100))
+    email = db.Column(db.String(100), unique=True)
     _password = db.Column('password', db.String(100))
 
     @hybrid_property
