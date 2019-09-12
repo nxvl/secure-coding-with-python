@@ -1,5 +1,3 @@
-from base64 import b64encode
-
 import bcrypt
 from flask import Blueprint, request, render_template, session, url_for, redirect
 
@@ -32,7 +30,8 @@ def login():
         if u:
             password = request.form['password']
             if bcrypt.checkpw(password.encode(), u.password.encode()):
-                session['logged_in'] = True
+                session['key'] = u.new_session_key()
+                db.session.commit()
                 return redirect(url_for('users.welcome'))
         error = "Invalid email or password."
 
@@ -41,13 +40,18 @@ def login():
 
 @bp.route('/logout', methods=('GET',))
 def logout():
-    session['logged_in'] = False
+    if session.get('key'):
+        key = session.pop('key')
+        u = db.session.query(User).filter_by(session_key=key).scalar()
+        u.new_session_key()
+        db.session.commit()
     return redirect(url_for('users.login'))
 
 
 @bp.route('/welcome', methods=('GET',))
 def welcome():
-    if session.get('logged_in'):
+    key = session.get('key')
+    if key and db.session.query(User).filter_by(session_key=key).scalar():
         return render_template('users/welcome.html')
     else:
         return redirect(url_for('users.login'))

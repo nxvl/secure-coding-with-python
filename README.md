@@ -1,41 +1,17 @@
 # Secure Coding with Python.
 
 ## Chapter 5: Broken De-Authentication
-### Test
-To test this we are going to make use of probably the most essential tool that web security professionals use:
-[Burp Suite](https://portswigger.net/burp). For the purposes of this course we are only going to use the community
-edition. 
+### Fix
+In order to avoid sessions to be used even after the user has logged out, we should use a random unique value in the
+session that we could revoke on logout, invalidating the session.
 
-1. Please download and install Burp Community Edition.
-2. Run Burp Suite. It will give you some options for creating or opening a project.
-3. Select `Temporary project` as all we need and the only one allowed for the community edition. 
-4. Click `Next`.
-5. Select `Use Burp defaults` on the configuration page.
-6. Click `Start Burp`.
-7. Go to the `Proxy` tab on Burp.
-8. Select the `Options` sub-tab.
-9. Configure your browser to use the proxy settings from `Proxy Listeners`. **Note**: Chrome will ignore proxy request on localhost, the use of Firefox is recommended.
-10. Go to the `Intercept` sub-tab.
-11. Make sure `Intercept is off` (it's usually on by default, we will enable it later.)
-12. Navigate to [http://localhost:5000/user/login](http://localhost:5000/user/login)
-13. Login with the credentials of the user you created.
-14. On `Burp` go to the sub-tab `HTTP history`.
-15. Find the `/user/welcome` request.
-16. On the bottom half under `Request` -> `Raw` you can see the cookie being set like `Cookie: session=eyJsb2dnZWRfaW4iOnRydWV9.XXnIiQ.U46jDCKmFDSH-b4_0FiyiBhNMqQ`
-17. Copy the cookie value.
-18. On the web app click `Logout`.
-19. In `Proxy` `Intercept` turn `Intercept is on`.
-20. Navigate to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome)
-21. In `Proxy` `Intercept` `Params` change the cookie value to the one we copied on step 17. 
-22. Click `Forward`.
+Since we are adding a new column to our user model we need to update our Database with:
+```bash
+> $ flask db migrate
+> $ flask db upgrade
+```
 
-As you can see even after the user logged out, we were able to log in using the session value captured previously
-successfully performing a session hijacking attack.
-
-**Note**: At the moment of this writing the latest Burp Suite Community Edition version is v2.1.02
-
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/code)**
 
 ## Index
 ### 1. Vulnerable Components
