@@ -28,13 +28,14 @@ def sign_up():
 def login():
     error = None
     if request.method == 'POST':
+        error = "The email hasn't been registered."
         u = db.session.query(User).filter(User.email == request.form['email']).scalar()
         if u:
+            error = "Invalid password."
             password = request.form['password']
             if bcrypt.checkpw(password.encode(), u.password.encode()):
                 session['logged_in'] = True
                 return redirect(url_for('users.welcome'))
-        error = "Invalid email or password."
 
     return render_template('users/login.html', error=error)
 
