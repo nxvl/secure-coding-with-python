@@ -1,19 +1,41 @@
 # Secure Coding with Python.
 
 ## Chapter 5: Broken De-Authentication
-### Requirement
-Now that users are allowed to login, we need to let them logout.
+### Test
+To test this we are going to make use of probably the most essential tool that web security professionals use:
+[Burp Suite](https://portswigger.net/burp). For the purposes of this course we are only going to use the community
+edition. 
 
-### Development
-We set the `logged_in` session value to `False` and redirect the user to the login page.
+1. Please download and install Burp Community Edition.
+2. Run Burp Suite. It will give you some options for creating or opening a project.
+3. Select `Temporary project` as all we need and the only one allowed for the community edition. 
+4. Click `Next`.
+5. Select `Use Burp defaults` on the configuration page.
+6. Click `Start Burp`.
+7. Go to the `Proxy` tab on Burp.
+8. Select the `Options` sub-tab.
+9. Configure your browser to use the proxy settings from `Proxy Listeners`. **Note**: Chrome will ignore proxy request on localhost, the use of Firefox is recommended.
+10. Go to the `Intercept` sub-tab.
+11. Make sure `Intercept is off` (it's usually on by default, we will enable it later.)
+12. Navigate to [http://localhost:5000/user/login](http://localhost:5000/user/login)
+13. Login with the credentials of the user you created.
+14. On `Burp` go to the sub-tab `HTTP history`.
+15. Find the `/user/welcome` request.
+16. On the bottom half under `Request` -> `Raw` you can see the cookie being set like `Cookie: session=eyJsb2dnZWRfaW4iOnRydWV9.XXnIiQ.U46jDCKmFDSH-b4_0FiyiBhNMqQ`
+17. Copy the cookie value.
+18. On the web app click `Logout`.
+19. In `Proxy` `Intercept` turn `Intercept is on`.
+20. Navigate to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome)
+21. In `Proxy` `Intercept` `Params` change the cookie value to the one we copied on step 17. 
+22. Click `Forward`.
 
-### Vulnerability
-Since flask by default uses cookie store for the sessions, we rely on the information stored in it as the ultimate
-source of truth. A source of truth that the user has control over. Because of this, if an attacker get's his/her
-hands on a session cookie, they could use them, even after the user logged out to get into the user's account.
+As you can see even after the user logged out, we were able to log in using the session value captured previously
+successfully performing a session hijacking attack.
+
+**Note**: At the moment of this writing the latest Burp Suite Community Edition version is v2.1.02
 
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/fix)**
 
 ## Index
 ### 1. Vulnerable Components
