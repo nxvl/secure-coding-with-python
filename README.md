@@ -13,7 +13,7 @@ source of truth. A source of truth that the user has control over. Because of th
 hands on a session cookie, they could use them, even after the user logged out to get into the user's account.
 
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/code)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/test)**
 
 ## Index
 ### 1. Vulnerable Components
