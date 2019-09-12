@@ -1,18 +1,10 @@
 # Secure Coding with Python.
 
 ## Chapter 4: Broken Authentication
-### Requirement
-Now that we have users in the system, we need to allow them to login.
+### Fix
+In order to avoid giving to much information, we need to use a more generic error message that doesn't give away specifics of the users.
 
-### Development
-We add a simple form to allow users to login, check for user and password to be correct and add a simple session.
-If something goes wrong, we drop some error messages.
-
-### Vulnerability
-Since we are very transparent and explicit in our error messages, an attacker can take advantage of them to enumerate users on our system.
-This could be done to reduce time of a brute force or credential stuffing attack.
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/4-broken-authentication/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/code)**
 
 ## Index
 ### 1. Vulnerable Components
