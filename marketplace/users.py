@@ -39,6 +39,12 @@ def login():
     return render_template('users/login.html', error=error)
 
 
+@bp.route('/logout', methods=('GET',))
+def logout():
+    session['logged_in'] = False
+    return redirect(url_for('users.login'))
+
+
 @bp.route('/welcome', methods=('GET',))
 def welcome():
     if session.get('logged_in'):

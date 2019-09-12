@@ -1,8 +1,17 @@
 # Secure Coding with Python.
 
-## Chapter 4: Broken Authentication
-### Fix
-In order to avoid giving to much information, we need to use a more generic error message that doesn't give away specifics of the users.
+## Chapter 5: Broken De-Authentication
+### Requirement
+Now that users are allowed to login, we need to let them logout.
+
+### Development
+We set the `logged_in` session value to `False` and redirect the user to the login page.
+
+### Vulnerability
+Since flask by default uses cookie store for the sessions, we rely on the information stored in it as the ultimate
+source of truth. A source of truth that the user has control over. Because of this, if an attacker get's his/her
+hands on a session cookie, they could use them, even after the user logged out to get into the user's account.
+
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.1-broken-deauthentication/code)**
 
