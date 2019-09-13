@@ -61,6 +61,7 @@ def change_password(user):
     if request.method == 'POST':
         if bcrypt.checkpw(request.form['current_password'].encode(), user.password.encode()):
             user.password = request.form['new_password']
+            session['key'] = user.new_session_key()
             db.session.commit()
             msg = "Password change successful"
         else:

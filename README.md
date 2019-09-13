@@ -1,34 +1,10 @@
 # Secure Coding with Python.
 
 ## Chapter 5: Broken De-Authentication
-### Test
-Since the vulnerability is the same as the prior chapter, the test is also very similar, this time we are going to
-use [OWASP Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project), or ZAP for short.
+### Fix
+We simply need to generate a new `session_key` value and update the user session with it at password change time.
 
-1. Please download and install ZAP.
-2. Run ZAP. It will ask if you want to persist the ZAP Session.
-3. Select `No, i do not want to persist this session at this mement in time` and uncheck `Remember my choice and do not ask me again`.
-4. Click `Start`.
-5. On the top right, find the icon `Open the browser you've chosen in the Quick Start tab pre-configured to proxy trough ZAP`. In my case it had the firefox icon.
-6. Navigate to [http://localhost:5000/user/login](http://localhost:5000/user/login)
-7. Login with the credentials of the user you created.
-8. On `ZAP` go to the `History` tab in the bottom half of the window.
-9. Find the `/user/welcome` request.
-10. Go to the `Request` tab in the top half of the window.
-11. On the header section you can see the cookie being sent like `Cookie: session=eyJrZXkiOiJHSDFWdThPbFdKRExWbU9ZTGY2SkJJMXJ5NUZNRlIwNVhoWTUwanFwZUxRIn0.XXsIUA.nNZ8EN3ty3HfsUjzTrEKZ9mzNPQ`
-12. Copy the cookie value.
-13. Go ahead and change the password in [http://localhost:5000/user/change_password](http://localhost:5000/user/change_password)
-14. Once again click on`Open the browser you've chosen in the Quick Start tab pre-configured to proxy trough ZAP`. In my case it had the firefox icon.
-15. In the new browser confirm you are not logged in by going to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome)
-16. You should get redirected to the login page.
-17. On `ZAP` click on `Set break on all requests and responses`. Should be a green circle icon.
-18. On your unauthenticated browser, go to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome).
-19. On `ZAP` insert the cookie value copied in step 11 in the headers section of the breakpoint.
-20. On the top click on `Submit and continue to next break point`. Which will look like a play icon.
-
-As you can see even after the user changed their password, we were able to log in using the session value captured previously successfully performing a session hijacking attack.
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/code)**
 
 ## Index
 ### 1. Vulnerable Components
