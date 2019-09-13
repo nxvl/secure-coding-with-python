@@ -28,7 +28,7 @@ use [OWASP Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Pr
 
 As you can see even after the user changed their password, we were able to log in using the session value captured previously successfully performing a session hijacking attack.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/fix)**
 
 ## Index
 ### 1. Vulnerable Components
