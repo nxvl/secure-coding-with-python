@@ -5,6 +5,6 @@
 {% endblock %}
 
 {% block content %}
-<a href="/user/logout">Logout</a><br/>
-Welcome to the marketplace!
+<a href="/user/logout">Logout</a>&nbsp;&nbsp;<a href="/user/change_password">Change Password</a><br/>
+Welcome <b>{{user.full_name}}</b> to the marketplace!
 {% endblock %}

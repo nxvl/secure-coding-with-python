@@ -1,17 +1,21 @@
 # Secure Coding with Python.
 
 ## Chapter 5: Broken De-Authentication
-### Fix
-In order to avoid sessions to be used even after the user has logged out, we should use a random unique value in the
-session that we could revoke on logout, invalidating the session.
+### Requirement
+Continuing with the user account, we should allow the user to change their password.
 
-Since we are adding a new column to our user model we need to update our Database with:
-```bash
-> $ flask db migrate
-> $ flask db upgrade
-```
+### Development
+We add a simple form that allows a user to enter their current password and a new password.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/code)**
+*Note*: For simplicity we aren't going to add a repeat your password field, but on a real world scenario you probably should.
+
+### Vulnerability
+Most of the times a user changes their password is because of suspicion of account compromise. If an attacker has already
+gotten their hands on the user credentials, changing the password is expected to prevent further access from
+the attacker. By changing the password, but not invalidating the `session_key` and attacker can keep their
+access to the compromised account, contrary to the user expectations.
+
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/test)**
 
 ## Index
 ### 1. Vulnerable Components
