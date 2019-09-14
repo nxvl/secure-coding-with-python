@@ -1,17 +1,22 @@
 # Secure Coding with Python.
 
 ## Chapter 7: Cross-Site Scripting
-### Requirement
-Now we would like to allow the user to update it's profile.
+### Test
+We will test manually by entering invalid parameters.
 
-### Development
-We create a form where users can update their full name and email.
+1. Go to [http://localhost:5000/user/edit](http://localhost:5000/user/edit)
+2. On Full Name enter the value: `FullName onmouseover=alert(document.cookie)`
+3. Click `Update User`
+4. You will notice that the title is `Edit profile for FullName onmouseover=alert(document.cookie)`, but the Full Name input is `FullName`
+5. Place your mouse on top of the Full Name input.
 
-### Vulnerability
-Since the flask template engine escapes values we pass, we went a little over confident and didn't create our form
-correctly, allowing the user to insert javascript into our page.
+As you can see a pop up appeared. This happens when inserting the name of the user on the value field generating:
+```html
+    <input name="full_name" id="full_name" value=FullName onmouseover=alert(document.cookie) required>
+```
+Which isn't what we intended.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/fix)**
 
 ## Index
 ### 1. Vulnerable Components
