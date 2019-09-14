@@ -4,7 +4,7 @@
 ### Fix
 We simply need to generate a new `session_key` value and update the user session with it at password change time.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/5.3-broken-deauthentication/code)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/code)**
 
 ## Index
 ### 1. Vulnerable Components
