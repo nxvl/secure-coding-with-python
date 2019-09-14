@@ -33,7 +33,7 @@ As you can see, we have been able to generate a new entry as an authenticated us
 that the user could've been tricked into navigating to.
 
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/fix)**
 
 ## Index
 ### 1. Vulnerable Components
