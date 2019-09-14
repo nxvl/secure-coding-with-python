@@ -2,6 +2,7 @@ import bcrypt
 from flask import Blueprint, request, render_template, session, url_for, redirect
 
 from . import db
+from .helpers import auth
 from .models import User
 
 bp = Blueprint('users', __name__, url_prefix='/user')
@@ -49,9 +50,6 @@ def logout():
 
 
 @bp.route('/welcome', methods=('GET',))
+@auth
 def welcome():
-    key = session.get('key')
-    if key and db.session.query(User).filter_by(session_key=key).scalar():
-        return render_template('users/welcome.html')
-    else:
-        return redirect(url_for('users.login'))
+    return render_template('users/welcome.html')
