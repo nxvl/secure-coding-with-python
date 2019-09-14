@@ -10,6 +10,7 @@
     <input name="title" id="title" required>
     <label for="description">Description</label>
     <input type="description" name="description" id="description" required>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <input type="submit" value="Create">
   </form>
 {% endblock %}

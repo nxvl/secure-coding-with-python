@@ -1,39 +1,13 @@
 # Secure Coding with Python.
 
 ## Chapter 6: Cross-Site Request Factory
-### Test
-To easily test for CSRF and proof of concept generation, we are going to use 
-[OWASP Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project), or ZAP for short, again.
+### Fix
+In order to fix, we would make use of the CSRFProtect of the Flask-WTF library. We add `Flask-WTF==0.14.2` to our
+`requirements.txt` file and run `pip install -r requirements.txt`.
 
-If you followed the steps on 
-[5.2-broken-deauthentication/test](https://github.com/nxvl/secure-coding-with-python/tree/5.2-broken-deauthentication/test)
-you should already have ZAP installed, if not please install it.
+Now if you try once again to run a CSRF attack you will get a `The CSRF tokens do not match.` error message.
 
-1. Run ZAP. It will ask if you want to persist the ZAP Session.
-2. Select `No, i do not want to persist this session at this mement in time` and uncheck `Remember my choice and do not ask me again`.
-3. Click `Start`.
-4. On the top right, find the icon `Open the browser you've chosen in the Quick Start tab pre-configured to proxy trough ZAP`. In my case it had the firefox icon.
-5. Navigate to [http://localhost:5000/user/login](http://localhost:5000/user/login)
-6. Login with the credentials of the user you created.
-7. Go to [http://localhost:5000/listings/create](http://localhost:5000/listings/create)
-8. Create a new listing.
-9. On the left panel navigate to `Sites` -> `http://localhost:5000` -> `listings`
-10. Select `POST:create(description,title)`.
-11. On the bottom panel go to the `Alerts` tab.
-12. On the left panel under `Alerts` expand `Absence of Anti-CSRF Tokens`
-13. Click on `GET: http://localhost:5000/listings/create`. The right side panel has a lot of information about the vulnerability, solutions and references.
-14. Now on the top left panel right click on `POST:create(description,title)`, the same from step 10.
-15. Click `Generate Anti-CSRF Test FORM`.
-16. A page on `http://localhost:8080` with a form very similar to the `listings/create` one.
-17. On another tab, make sure you are authenticated by going to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome). Login if you aren't.
-18. Back on the ZAP generated form insert a description and title. Mind that the fields might be inverted. 
-19. Go to [http://localhost:5000/listings](http://localhost:5000/listings) and refresh the page.
-
-As you can see, we have been able to generate a new entry as an authenticated user into our site from another site, 
-that the user could've been tricked into navigating to.
-
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/code)**
 
 ## Index
 ### 1. Vulnerable Components
