@@ -40,16 +40,15 @@ def login():
 
 
 @bp.route('/logout', methods=('GET',))
-def logout():
-    if session.get('key'):
-        key = session.pop('key')
-        u = db.session.query(User).filter_by(session_key=key).scalar()
-        u.new_session_key()
-        db.session.commit()
+@auth
+def logout(user):
+    session.pop('key')
+    user.new_session_key()
+    db.session.commit()
     return redirect(url_for('users.login'))
 
 
 @bp.route('/welcome', methods=('GET',))
 @auth
-def welcome():
+def welcome(user):
     return render_template('users/welcome.html')
