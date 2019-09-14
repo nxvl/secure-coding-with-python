@@ -4,7 +4,7 @@
 ### Fix
 Luckly the fix is easy, we just need to get quotes around the value in the form.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/fix)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/code)**
 
 ## Index
 ### 1. Vulnerable Components
