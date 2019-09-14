@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Edit profile for {{ user.full_name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <label for="full_name">Current Password</label>
+    <input name="full_name" id="full_name" value={{user.full_name}} required>
+    <br/>
+    <label for="email">Email</label>
+    <input name="email" id="email" value={{user.email}} required>
+    <br/>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <input type="submit" value="Update User">
+</form>
+{% endblock %}

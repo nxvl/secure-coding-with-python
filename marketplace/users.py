@@ -67,3 +67,13 @@ def change_password(user):
         else:
             msg = "Incorrect current password"
     return render_template('users/change_password.html', user=user, msg=msg)
+
+
+@bp.route('/edit', methods=('GET', 'POST'))
+@auth
+def edit(user):
+    if request.method == 'POST':
+        user.full_name = request.form['full_name']
+        user.email = request.form['email']
+        db.session.commit()
+    return render_template('users/edit.html', user=user)

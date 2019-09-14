@@ -1,13 +1,17 @@
 # Secure Coding with Python.
 
-## Chapter 6: Cross-Site Request Factory
-### Fix
-In order to fix, we would make use of the CSRFProtect of the Flask-WTF library. We add `Flask-WTF==0.14.2` to our
-`requirements.txt` file and run `pip install -r requirements.txt`.
+## Chapter 7: Cross-Site Scripting
+### Requirement
+Now we would like to allow the user to update it's profile.
 
-Now if you try once again to run a CSRF attack you will get a `The CSRF tokens do not match.` error message.
+### Development
+We create a form where users can update their full name and email.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/code)**
+### Vulnerability
+Since the flask template engine escapes values we pass, we went a little over confident and didn't create our form
+correctly, allowing the user to insert javascript into our page.
+
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/test)**
 
 ## Index
 ### 1. Vulnerable Components
