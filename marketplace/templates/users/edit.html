@@ -7,10 +7,10 @@
 {% block content %}
 <form method="post">
     <label for="full_name">Full Name</label>
-    <input name="full_name" id="full_name" value={{user.full_name}} required>
+    <input name="full_name" id="full_name" value="{{user.full_name}}" required>
     <br/>
     <label for="email">Email</label>
-    <input name="email" id="email" value={{user.email}} required>
+    <input name="email" id="email" value="{{user.email}}" required>
     <br/>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     <input type="submit" value="Update User">

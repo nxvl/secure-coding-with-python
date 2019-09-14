@@ -1,20 +1,8 @@
 # Secure Coding with Python.
 
 ## Chapter 7: Cross-Site Scripting
-### Test
-We will test manually by entering invalid parameters.
-
-1. Go to [http://localhost:5000/user/edit](http://localhost:5000/user/edit)
-2. On Full Name enter the value: `FullName onmouseover=alert(document.cookie)`
-3. Click `Update User`
-4. You will notice that the title is `Edit profile for FullName onmouseover=alert(document.cookie)`, but the Full Name input is `FullName`
-5. Place your mouse on top of the Full Name input.
-
-As you can see a pop up appeared. This happens when inserting the name of the user on the value field generating:
-```html
-    <input name="full_name" id="full_name" value=FullName onmouseover=alert(document.cookie) required>
-```
-Which isn't what we intended.
+### Fix
+Luckly the fix is easy, we just need to get quotes around the value in the form.
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/7-xss/fix)**
 
