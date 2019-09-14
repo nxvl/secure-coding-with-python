@@ -1,10 +1,27 @@
 # Secure Coding with Python.
 
-## Chapter 5: Broken De-Authentication
-### Fix
-We simply need to generate a new `session_key` value and update the user session with it at password change time.
+## Chapter 6: Cross-Site Request Factory
+### Requirement
+Now that we have authentication in place, we should restrict the listing create form to authenticated users.
+Also, we should associate the listings with the user who created it.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/code)**
+### Development
+We add a `user_id` column to `Listing` as foreign key to `User`. 
+On the`listing.register` controller we add the `@auth` decorator and assign the user when creating the Listing.
+On the listings list page we also add information about the author.
+
+Since we are making changes to the models you also need to run:
+```bash
+> flask db migrate
+> flask db upgrade
+```
+
+### Vulnerability
+Since the only protection we have added to this form is authentication, an attacker can trick the user into navigating
+to a malicious website on an authenticated browser, and submit the form in the background, without the user
+knowledge using it's authentication cookies.
+
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/6-csrf/test)**
 
 ## Index
 ### 1. Vulnerable Components

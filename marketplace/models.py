@@ -6,6 +6,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from . import db
 
+
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -13,6 +14,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True)
     _password = db.Column('password', db.String(100))
     session_key = db.Column('session_key', db.String(50), unique=True)
+    listings = db.relationship("Listing", back_populates="user")
 
     @hybrid_property
     def password(self):
@@ -28,9 +30,12 @@ class User(db.Model):
         self.session_key = key
         return self.session_key
 
+
 class Listing(db.Model):
     __tablename__ = 'listings'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     description = db.Column(db.Text())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User", back_populates="listings")
