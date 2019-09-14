@@ -48,5 +48,5 @@ def logout():
 
 @bp.route('/welcome', methods=('GET',))
 @auth
-def welcome():
+def welcome(user):
     return render_template('users/welcome.html')
