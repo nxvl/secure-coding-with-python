@@ -33,7 +33,6 @@ branches = [
     '8-broken-access-control/test',
     '8-broken-access-control/fix',
     '9-sensitive-data-exposure/code',
-    '9-sensitive-data-exposure/test',
     '9-sensitive-data-exposure/fix',
 ]
 
