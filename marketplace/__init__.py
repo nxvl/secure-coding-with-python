@@ -30,8 +30,9 @@ def create_app(test_config=None):
     csrf.init_app(app)
     migrate.init_app(app, db)
 
-    from . import listings, users
+    from . import listings, users, api
     app.register_blueprint(listings.bp)
     app.register_blueprint(users.bp)
+    app.register_blueprint(api.bp)
 
     return app
