@@ -12,6 +12,7 @@
     <input name="email" id="email" required>
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <input type="submit" value="Signup">
   </form>
 {% endblock %}
