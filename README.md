@@ -105,12 +105,7 @@ As it can be seen, the inserted title will be `injection` and the description wi
 * [8-broken-access-control/test](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)
 * [8-broken-access-control/fix](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/fix)
 
-### 9. XML External Entities (XXE)
-* [9-xxe/code](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/code) 
-* [9-xxe/test](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/test)
-* [9-xxe/fix](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/fix)
-
-### 10. Sensitive Data Exposure
-* [10-sensitive-data-exposure/code](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/code) 
-* [10-sensitive-data-exposure/test](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/test)
-* [10-sensitive-data-exposure/fix](https://github.com/nxvl/secure-coding-with-python/tree/10-sensitive-data-exposure/fix)
+### 9. Sensitive Data Exposure
+* [9-sensitive-data-exposure/code](https://github.com/nxvl/secure-coding-with-python/tree/9-sensitive-data-exposure/code) 
+* [9-sensitive-data-exposure/test](https://github.com/nxvl/secure-coding-with-python/tree/9-sensitive-data-exposure/test)
+* [9-sensitive-data-exposure/fix](https://github.com/nxvl/secure-coding-with-python/tree/9-sensitive-data-exposure/fix)
