@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Edit listing {{ listing.title }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{listing.title}}" required>
+    <br/>
+    <label for="description">Description</label>
+    <input name="description" id="description" value="{{listing.description}}" required>
+    <br/>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <input type="submit" value="Update Listing">
+</form>
+{% endblock %}

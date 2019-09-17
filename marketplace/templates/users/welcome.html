@@ -11,4 +11,16 @@
 <a href="/user/edit">Edit My Profile</a>
 <br/>
 Welcome <b>{{user.full_name}}</b> to the marketplace!
+<h2>Your listings are:</h2>
+{% for listing in user.listings %}
+<article class="listing">
+    <p>
+        <a href="/listings/{{listing.id}}">{{ listing.title }}</a> <br />
+        {{ listing.description }}
+    </p>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
 {% endblock %}

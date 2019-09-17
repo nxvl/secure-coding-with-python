@@ -1,10 +1,19 @@
 # Secure Coding with Python.
 
-## Chapter 7: Cross-Site Scripting
-### Fix
-Luckly the fix is easy, we just need to get quotes around the value in the form.
+## Chapter 8: Broken Access Control
+### Requirement
+We should allow users to edit their own listings.
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/code)**
+### Development
+We add an edit listing form in the same way we added the user edit one in the last chapter. 
+Also to allow the user to access said forms we add a list of it's owned listings in the welcome page.
+
+### Vulnerability
+Since we were over confident that the `@auth` decorator would do the right thing, we never cared to look for authorization.
+Any authenticated used could edit any listing, even owned by other users.
+
+
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)**
 
 ## Index
 ### 1. Vulnerable Components

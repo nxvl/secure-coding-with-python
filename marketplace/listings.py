@@ -31,3 +31,13 @@ def register(user):
 
     return render_template('listings/create.html')
 
+
+@bp.route('/<int:listing_id>', methods=('GET', 'POST'))
+@auth
+def edit_listing(user, listing_id):
+    listing = db.session.query(Listing).filter_by(id=listing_id).scalar()
+    if request.method == 'POST':
+        listing.title = request.form['title']
+        listing.description = request.form['description']
+        db.session.commit()
+    return render_template('listings/edit.html', user=user, listing=listing)
