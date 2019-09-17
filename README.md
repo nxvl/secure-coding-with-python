@@ -1,27 +1,14 @@
 # Secure Coding with Python.
 
 ## Chapter 8: Broken Access Control
-### Test
-To test this we would need to create a second user, and try to modify our first user's
-listings.
-
-1. Log in with your user.
-2. Go to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome)
-3. Click on any listing to edit it.
-4. Note the url, in my case is [http://localhost:5000/listings/3](http://localhost:5000/listings/3)
-5. Logout.
-6. Go to [http://localhost:5000/user/signup](http://localhost:5000/user/signup)
-7. Enter the information and create a new user.
-8. Log in with the new user.
-9. Notice that you have no listings under `Your listings are:`
-10. Go to the other's users edit listing url.
-11. Update the listing to something like `Evil attacker listing` with description `evil edited listing`.
-12. Click `Update Listing`
-13. Logout.
-14. Log in again with the original user.
-
-As you can see the listing of the user was changed by another user, which shouldn't
-have authorization to update our listings.
+### Fix
+In order to fix the authorization we should add the authenticated user to the query, like this:
+```python
+    listing = db.session.query(Listing).filter_by(id=listing_id, user=user).scalar()
+    if not listing:
+        return abort(404)
+```
+Now when another user tries to edit our listing a 404 will be returned
 
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)**

@@ -1,6 +1,6 @@
 import sys
  
-from flask import Blueprint, request, redirect, render_template, url_for
+from flask import Blueprint, request, redirect, render_template, url_for, abort
 
 from . import db
 from .helpers import auth
@@ -35,7 +35,9 @@ def register(user):
 @bp.route('/<int:listing_id>', methods=('GET', 'POST'))
 @auth
 def edit_listing(user, listing_id):
-    listing = db.session.query(Listing).filter_by(id=listing_id).scalar()
+    listing = db.session.query(Listing).filter_by(id=listing_id, user=user).scalar()
+    if not listing:
+        return abort(404)
     if request.method == 'POST':
         listing.title = request.form['title']
         listing.description = request.form['description']
