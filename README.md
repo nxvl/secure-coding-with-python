@@ -24,7 +24,7 @@ As you can see the listing of the user was changed by another user, which should
 have authorization to update our listings.
 
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/fix)**
 
 ## Index
 ### 1. Vulnerable Components
