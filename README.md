@@ -1,6 +1,6 @@
 # Secure Coding with Python.
 
-## Chapter 8: Broken Access Control
+## Chapter 9: Sensitive data exposure
 ### Requirement
 We would love people to consume our listings on an automated manner, we should expose the listings on a json API.
 
@@ -27,7 +27,7 @@ def to_dict(obj):
 Since we are automatically serializing objects without any care, we are now exposing all the password hashes and session_keys to the world.
 
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/9-sensitive-data-exposure/code)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/9-sensitive-data-exposure/fix)**
 
 ## Index
 ### 1. Vulnerable Components
