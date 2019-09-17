@@ -1,33 +1,9 @@
 # Secure Coding with Python.
 
 ## Chapter 9: Sensitive data exposure
-### Requirement
-We would love people to consume our listings on an automated manner, we should expose the listings on a json API.
-
-### Development
-We add `/api/v1/listings` endpoint returning a json blob with all the listings.
-In order to serialize models to json, we add a helper function that will automatically turn our object into a `dict` and resolve relationships.
-
-```python
-def to_dict(obj):
-    if obj is None:
-        return obj
-
-    ret = {}
-    for c in obj.__table__.columns:
-        if c.name[-3:] == "_id":
-            key = c.name[:-3]
-            ret[key] = to_dict(getattr(obj, key))
-        else:
-            ret[c.name] = getattr(obj, c.name)
-    return ret
-```
-
-### Vulnerability
-Since we are automatically serializing objects without any care, we are now exposing all the password hashes and session_keys to the world.
-
-
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/9-sensitive-data-exposure/fix)**
+### Fix
+In order to avoid leaking information we should cherry pick what info should be exposed rather just serialize objects
+automatically.
 
 ## Index
 ### 1. Vulnerable Components
