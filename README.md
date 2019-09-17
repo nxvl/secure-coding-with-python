@@ -11,7 +11,7 @@ In order to fix the authorization we should add the authenticated user to the qu
 Now when another user tries to edit our listing a 404 will be returned
 
 
-**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)**
+**Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/9-xxe/code)**
 
 ## Index
 ### 1. Vulnerable Components
