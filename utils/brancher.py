@@ -43,5 +43,5 @@ if command == 'next':
     next = branches[i + 1] if i + 1 < len(branches) else ""
     print(next)
 elif command == 'prev':
-    prev = branches[i-1] if i > 1 else ""
+    prev = branches[i-1] if i > 0 else ""
     print(prev)
