@@ -1,16 +1,27 @@
 # Secure Coding with Python.
 
 ## Chapter 8: Broken Access Control
-### Requirement
-We should allow users to edit their own listings.
+### Test
+To test this we would need to create a second user, and try to modify our first user's
+listings.
 
-### Development
-We add an edit listing form in the same way we added the user edit one in the last chapter. 
-Also to allow the user to access said forms we add a list of it's owned listings in the welcome page.
+1. Log in with your user.
+2. Go to [http://localhost:5000/user/welcome](http://localhost:5000/user/welcome)
+3. Click on any listing to edit it.
+4. Note the url, in my case is [http://localhost:5000/listings/3](http://localhost:5000/listings/3)
+5. Logout.
+6. Go to [http://localhost:5000/user/signup](http://localhost:5000/user/signup)
+7. Enter the information and create a new user.
+8. Log in with the new user.
+9. Notice that you have no listings under `Your listings are:`
+10. Go to the other's users edit listing url.
+11. Update the listing to something like `Evil attacker listing` with description `evil edited listing`.
+12. Click `Update Listing`
+13. Logout.
+14. Log in again with the original user.
 
-### Vulnerability
-Since we were over confident that the `@auth` decorator would do the right thing, we never cared to look for authorization.
-Any authenticated used could edit any listing, even owned by other users.
+As you can see the listing of the user was changed by another user, which shouldn't
+have authorization to update our listings.
 
 
 **Proceed to [next section](https://github.com/nxvl/secure-coding-with-python/tree/8-broken-access-control/test)**
